@@ -15,6 +15,8 @@ namespace UpdatedEngine2
     /// </summary>
     class Player : GameEntity
     {
+        Artefact artefact = new Artefact();
+
         // Enum for selected gender
         public enum Gender
         {
@@ -34,21 +36,15 @@ namespace UpdatedEngine2
             set { pos = value; }
         }
 
-        int number = 5;
-        int number2 = 10;
-
         // Create a List of type IEntity to store items the player picks up
         private List<IEntity> playerInventory = new List<IEntity>();
 
-        Rectangle _hitBox;
 
         public Player()
         {
             moveSpeed = 5;
 
             pos = new Vector2(315, 350);
-
-            Console.WriteLine(number + number2);
         }
 
         /// <summary>
@@ -58,11 +54,6 @@ namespace UpdatedEngine2
         {
             // Capture keyboard state every frame 
             keyboardState = Keyboard.GetState();
-
-            _hitBox.Location = new Point((int)pos.X, (int)pos.Y);
-
-            //Console.WriteLine("X: " + HitBox.X);
-            //Console.WriteLine("Y: " + HitBox.Y);
 
             CheckWalls();
         }
@@ -75,7 +66,7 @@ namespace UpdatedEngine2
         {
             if (entityCol is Artefact)
             {
-                Console.WriteLine("Hit");
+                //Console.WriteLine("Hit");
                 AddToInventory(entityCol);
             }
 
